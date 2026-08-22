@@ -7,7 +7,7 @@
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; background: #0f0f0f; color: #fff; overflow-x: hidden; }
-.header { position: fixed; top: 0; left: 0; right: 0; padding: 15px 20px; display: flex; justify-content: flex-start; align-items: center; z-index: 20; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); }
+.header { position: fixed; top: 0; left: 0; right: 0; padding: 15px 20px; display: flex; justify-content: flex-start; align-items: center; z-index: 20; background: rgba(0,0,0,0.92); backdrop-filter: blur(5px); }
 .menu-btn { font-size: 28px; background: none; border: none; color: #fff; cursor: pointer; }
 .sidebar { position: fixed; top: 0; left: -300px; width: 280px; height: 100%; background: #161b22; transition: 0.3s; padding-top: 80px; z-index: 30; }
 .sidebar.active { left: 0; }
@@ -15,17 +15,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
 .sidebar a:hover { background: #d4a017; color: #000; }
 .close-btn { position: absolute; top: 15px; right: 20px; font-size: 30px; background: none; border: none; color: #fff; cursor: pointer; }
 
-/* TOPO COM FOTO APARECENDO TODA */
 .hero-foto { width: 100%; background: #000; display: flex; justify-content: center; align-items: center; padding-top: 55px; }
 .hero-foto img { width: 100%; height: auto; max-height: 68vh; object-fit: contain; object-position: center top; display: block; }
 
 #home.main { background: #0f0f0f; display: flex; flex-direction: column; align-items: center; padding: 25px 20px 20px; gap: 22px; min-height: auto; }
 .titulo-avaliacoes { color: #d4a017; font-size: 16px; font-weight: 800; letter-spacing: 1px; }
-
-/* AVALIAÇÕES - CORRIGIDO PRA NÃO FICAR APERTADO */
 .carrossel-container { width: 100%; max-width: 420px; height: 165px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; scroll-snap-type: y mandatory; scrollbar-width: none; padding: 2px 2px 10px 2px; }
 .carrossel-container::-webkit-scrollbar { display: none; }
-.card-avaliacao { background: #1c1c1c; border: 2px solid #d4a017; border-radius: 12px; padding: 14px 14px; scroll-snap-align: start; }
+.card-avaliacao { background: #1c1c1c; border: 2px solid #d4a017; border-radius: 12px; padding: 14px; scroll-snap-align: start; }
 .card-avaliacao .estrelas { color: #ffd700; font-size: 12px; margin-bottom: 4px; }
 .card-avaliacao p { font-size: 13px; color: #fff; line-height: 1.35; }
 .card-avaliacao span { color: #d4a017; font-size: 11px; font-weight: bold; display: block; margin-top: 5px; }
@@ -46,10 +43,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
 .rodape-dev { text-align: center; font-size: 11px; color: #888; font-style: italic; margin-top: 10px; }
 .rodape-dev a { color: #25D366; font-weight: 600; text-decoration: none; }
 
-/* PAGINAS DE GALERIA */
 .page { display: none; padding: 85px 20px 40px; max-width: 1200px; margin: 0 auto; min-height: 100vh; background: #0f0f0f; }
 .page.active { display: block; }
-.page h2 { color: #d4a017; text-align: center; font-size: 26px; margin-bottom: 25px; }
+#home.page.active { display: flex; }
+.page h2 { color: #d4a017; text-align: center; font-size: 26px; margin-bottom: 25px; letter-spacing: 1px; }
 .voltar-btn { background: #222; color: #fff; padding: 10px 20px; border: 1px solid #d4a017; border-radius: 8px; cursor: pointer; margin-bottom: 20px; }
 .galeria-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
 .galeria-grid img { width: 100%; border-radius: 12px; border: 2px solid #d4a017; cursor: pointer; aspect-ratio: 4/5; object-fit: cover; transition: 0.2s; }
@@ -60,7 +57,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
 #modal-foto img { max-width: 95vw; max-height: 85vh; border-radius: 12px; border: 3px solid #d4a017; }
 #modal-foto .fechar-modal { position: absolute; top: 20px; right: 25px; font-size: 40px; color: #fff; background: none; border: none; cursor: pointer; }
 
-/* PC - 23.8" - MAIS LARGO E AJEITADO */
+/* TABLET */
+@media (min-width: 600px) and (max-width: 899px) {
+  .galeria-grid { grid-template-columns: repeat(2, 1fr); }
+  .carrossel-container { max-width: 520px; height: 185px; }
+  .card-endereco, .versiculo, .botoes-redes { max-width: 520px; }
+}
+
+/* PC - 23.8" E MAIOR */
 @media (min-width: 900px) {
   .hero-foto img { max-height: 72vh; }
   #home.main { padding: 35px 20px 30px; gap: 26px; }
@@ -68,16 +72,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
   .carrossel-container { max-width: 640px; height: 210px; gap: 14px; }
   .card-avaliacao { padding: 16px 18px; }
   .card-avaliacao p { font-size: 15px; }
-  .card-avaliacao span { font-size: 12px; }
   .card-endereco { max-width: 640px; }
   .versiculo { max-width: 640px; font-size: 16px; }
   .botoes-redes { max-width: 640px; }
   .btn-whatsapp, .btn-instagram { font-size: 16px; padding: 18px; }
-  .galeria-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .galeria-grid { grid-template-columns: repeat(3, 1fr); gap: 22px; }
   .galeria-grid img { aspect-ratio: 1 / 1; }
-}
-@media (min-width: 600px) and (max-width: 899px) {
-  .galeria-grid { grid-template-columns: repeat(2, 1fr); }
+  .page h2 { font-size: 32px; }
 }
 </style>
 </head>
@@ -106,7 +107,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
 </div>
 
 <div id="galeria" class="page"><button class="voltar-btn" onclick="showPage('home')">← Voltar</button><h2>Galeria - Cortes, Barba e Pinturas</h2><div class="galeria-grid" id="galeria-cortes"><p style="text-align:center; grid-column:1/-1;">Carregando fotos...</p></div></div>
+
 <div id="galeria-kids" class="page"><button class="voltar-btn" onclick="showPage('home')">← Voltar</button><h2>Galeria Kids</h2><div class="galeria-grid" id="galeria-kids-grid"><p style="text-align:center; grid-column:1/-1;">Carregando fotos...</p></div></div>
+
 <div id="modal-foto" onclick="fecharModal()"><button class="fechar-modal">×</button><img id="modal-img" src=""></div>
 
 <script>
