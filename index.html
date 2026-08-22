@@ -9,75 +9,110 @@
 body { 
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; 
   color: #fff; 
+  background-color: #000;
   background-image: url('IMG_5014.png');
   background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: -1;
+  content: ""; position: fixed; inset: 0;
+  background: rgba(0, 0, 0, 0.6); z-index: -1;
 }
-.header { position: absolute; top: 0; left: 0; right: 0; padding: 20px; display: flex; justify-content: space-between; align-items: center; z-index: 10; }
-.menu-btn { font-size: 30px; background: none; border: none; color: #fff; cursor: pointer; }
-.logo { font-size: 28px; font-weight: 800; color: #d4a017; text-shadow: 2px 2px 8px rgba(0,0,0,0.8); text-align: center; flex: 1; letter-spacing: 2px; }
+.header { position: fixed; top: 0; left: 0; right: 0; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; z-index: 10; background: linear-gradient(to bottom, rgba(0,0,0,0.85), transparent); }
+.menu-btn { font-size: 28px; background: none; border: none; color: #fff; cursor: pointer; }
+.logo { font-size: 24px; font-weight: 800; color: #d4a017; letter-spacing: 2px; text-align: center; flex: 1; }
 .sidebar { position: fixed; top: 0; left: -300px; width: 280px; height: 100%; background: #161b22; transition: 0.3s; padding-top: 80px; z-index: 20; box-shadow: 2px 0 10px rgba(0,0,0,0.5); }
 .sidebar.active { left: 0; }
 .sidebar a { display: block; padding: 15px 25px; color: #fff; text-decoration: none; font-size: 18px; border-bottom: 1px solid #30363d; }
 .sidebar a:hover { background: #d4a017; color: #000; }
 .close-btn { position: absolute; top: 15px; right: 20px; font-size: 30px; background: none; border: none; color: #fff; cursor: pointer; }
-.main { min-height: 100vh; position: relative; padding: 20px; padding-bottom: 110px; }
-.card-endereco { background: #fff; border-radius: 10px; padding: 10px; width: 85%; max-width: 320px; position: absolute; top: 48%; left: 50%; transform: translate(-50%, -50%); box-shadow: 0 4px 15px rgba(0,0,0,0.3); text-decoration: none; display: block; }
+
+/* HOME EM FLEX */
+#home.main { 
+  min-height: 100vh; display: flex; flex-direction: column; 
+  justify-content: flex-end; align-items: center; 
+  padding: 90px 20px 20px 20px; gap: 18px;
+}
+.titulo-avaliacoes { color: #d4a017; font-size: 16px; font-weight: 800; letter-spacing: 1px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
+.carrossel-container { width: 100%; max-width: 340px; height: 88px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; scroll-snap-type: y mandatory; scrollbar-width: none; }
+.carrossel-container::-webkit-scrollbar { display: none; }
+.card-avaliacao { background: rgba(20, 20, 20, 0.9); border: 2px solid #d4a017; border-radius: 15px; padding: 10px 12px; width: 100%; scroll-snap-align: start; flex-shrink: 0; }
+.card-avaliacao .estrelas { color: #ffd700; font-size: 12px; margin-bottom: 4px; }
+.card-avaliacao p { font-size: 12px; line-height: 1.3; color: #fff; margin-bottom: 3px; }
+.card-avaliacao span { font-weight: bold; color: #d4a017; font-size: 10px; }
+
+.card-endereco { background: #fff; border-radius: 10px; padding: 10px; width: 100%; max-width: 340px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); text-decoration: none; display: block; }
 .card-endereco .titulo { display: flex; align-items: center; gap: 6px; color: #000; font-weight: 700; font-size: 13px; margin-bottom: 8px; }
 .card-endereco .titulo svg { width: 15px; height: 15px; fill: #d4a017; }
 .card-endereco .endereco { background: #f5f5f5; padding: 8px; border-radius: 6px; }
 .card-endereco .endereco strong { color: #000; font-size: 12px; display: block; }
 .card-endereco .endereco span { color: #666; font-size: 11px; }
 .card-endereco .ver-mapa { color: #d4a017; font-size: 11px; font-weight: 600; margin-top: 6px; display: inline-block; }
-.versiculo { position: absolute; top: 63%; left: 50%; transform: translateX(-50%); width: 85%; max-width: 320px; text-align: center; color: #d4a017; font-size: 13px; font-style: italic; font-weight: 600; line-height: 1.4; text-shadow: 1px 1px 4px rgba(0,0,0,0.8); padding: 0 10px; }
+
+.versiculo { width: 100%; max-width: 340px; text-align: center; color: #d4a017; font-size: 13px; font-style: italic; font-weight: 600; line-height: 1.4; text-shadow: 1px 1px 4px rgba(0,0,0,0.8); }
 .versiculo span { display: block; font-size: 10px; color: #fff; margin-top: 4px; font-weight: 400; }
-.titulo-avaliacoes { position: absolute; top: 100px; left: 50%; transform: translateX(-50%); color: #d4a017; font-size: 18px; font-weight: 800; text-align: center; letter-spacing: 1px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); width: 100%; }
-.carrossel-container { position: absolute; top: 135px; left: 50%; transform: translateX(-50%); width: 75%; max-width: 290px; height: 88px; overflow-x: hidden; overflow-y: auto; scroll-snap-type: y mandatory; display: flex; flex-direction: column; gap: 10px; padding: 5px 0; scrollbar-width: none; }
-.carrossel-container::-webkit-scrollbar { display: none; }
-.card-avaliacao { background: rgba(20, 20, 20, 0.9); border: 2px solid #d4a017; border-radius: 15px; padding: 10px 12px; width: 100%; min-height: 78px; scroll-snap-align: center; flex-shrink: 0; }
-.card-avaliacao .estrelas { color: #ffd700; font-size: 14px; margin-bottom: 4px; }
-.card-avaliacao p { font-size: 11px; line-height: 1.3; color: #fff; margin-bottom: 3px; }
-.card-avaliacao span { font-weight: bold; color: #d4a017; font-size: 10px; }
-.botoes-redes { position: absolute; bottom: 70px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; }
-.btn-whatsapp { background: #25D366; color: white; padding: 14px 18px; border-radius: 15px; text-decoration: none; font-weight: bold; font-size: 15px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); display: flex; align-items: center; gap: 8px; }
-.btn-instagram { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); color: white; padding: 14px 18px; border-radius: 15px; text-decoration: none; font-weight: bold; font-size: 15px; box-shadow: 0 4px 15px rgba(220, 39, 67, 0.4); display: flex; align-items: center; gap: 8px; }
 
-/* RODAPÉ SIMPLES IGUAL O VERSICULO */
-.rodape-dev {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 85%;
-  max-width: 320px;
-  text-align: center;
-  font-size: 11px;
-  color: #ccc;
-  font-style: italic;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-}
-.rodape-dev a {
-  color: #25D366;
-  font-weight: 600;
-  text-decoration: none;
-}
+.botoes-redes { display: flex; gap: 12px; width: 100%; max-width: 340px; justify-content: center; }
+.btn-whatsapp { background: #25D366; color: white; padding: 14px 18px; border-radius: 15px; text-decoration: none; font-weight: bold; font-size: 14px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); display: flex; align-items: center; gap: 8px; flex:1; justify-content:center; }
+.btn-instagram { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); color: white; padding: 14px 18px; border-radius: 15px; text-decoration: none; font-weight: bold; font-size: 14px; box-shadow: 0 4px 15px rgba(220, 39, 67, 0.4); display: flex; align-items: center; gap: 8px; flex:1; justify-content:center; }
 
-.page { display: none; padding: 80px 20px 40px 20px; max-width: 900px; margin: 0 auto; }
+.rodape-dev { text-align: center; font-size: 11px; color: #ccc; font-style: italic; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); }
+.rodape-dev a { color: #25D366; font-weight: 600; text-decoration: none; }
+
+.page { display: none; padding: 90px 20px 40px 20px; max-width: 1200px; margin: 0 auto; }
 .page.active { display: block; }
-.page h2 { color: #d4a017; text-align: center; font-size: 28px; margin-bottom: 20px; }
-.galeria-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
-.galeria-grid img { width: 100%; border-radius: 10px; border: 2px solid #d4a017; }
+.page h2 { color: #d4a017; text-align: center; font-size: 26px; margin-bottom: 25px; }
 .voltar-btn { background: #30363d; color: #fff; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; margin-bottom: 20px; font-size: 16px; }
+
+/* GALERIA 3 COLUNAS */
+.galeria-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
+.galeria-grid img { width: 100%; border-radius: 10px; border: 2px solid #d4a017; cursor: pointer; transition: 0.2s; aspect-ratio: 4/5; object-fit: cover; }
+.galeria-grid img:hover { transform: scale(1.02); border-color: #fff; }
+
+/* MODAL - ZOOM NA MESMA PAGINA */
+#modal-foto { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 99; justify-content: center; align-items: center; padding: 20px; }
+#modal-foto.active { display: flex; }
+#modal-foto img { max-width: 95vw; max-height: 85vh; border-radius: 12px; border: 3px solid #d4a017; box-shadow: 0 0 30px rgba(0,0,0,0.8); }
+#modal-foto .fechar-modal { position: absolute; top: 20px; right: 25px; font-size: 40px; color: #fff; background: none; border: none; cursor: pointer; line-height: 1; }
+
+/* RESPONSIVO PC - RESOLVE O QUE TU PEDIU */
+@media (min-width: 768px) {
+  body {
+    background-size: contain; /* FAZ A FOTO APARECER TODA */
+    background-position: center top;
+    background-color: #0a0a0a;
+  }
+  .logo { font-size: 32px; }
+  #home.main { 
+    padding: 110px 40px 30px 40px; 
+    gap: 22px;
+  }
+  .titulo-avaliacoes { font-size: 22px; }
+  .carrossel-container { max-width: 450px; height: 110px; }
+  .card-avaliacao p { font-size: 14px; }
+  .card-avaliacao span { font-size: 12px; }
+  .card-endereco { max-width: 450px; padding: 14px; }
+  .card-endereco .titulo { font-size: 15px; }
+  .card-endereco .endereco strong { font-size: 14px; }
+  .card-endereco .endereco span { font-size: 12px; }
+  .versiculo { max-width: 500px; font-size: 16px; }
+  .versiculo span { font-size: 12px; }
+  .botoes-redes { max-width: 450px; }
+  .btn-whatsapp, .btn-instagram { font-size: 16px; padding: 16px 22px; }
+
+  /* GALERIA 3 COLUNAS NO PC */
+  .galeria-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .galeria-grid img { aspect-ratio: 1 / 1; }
+  .page h2 { font-size: 32px; }
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+  .galeria-grid { grid-template-columns: repeat(2, 1fr); }
+}
 </style>
 </head>
 <body>
@@ -97,14 +132,14 @@ body::before {
 <div id="home" class="main page active">
   <div class="titulo-avaliacoes">NOSSAS AVALIAÇÕES</div>
   <div class="carrossel-container" id="carrossel">
-    <div class="card-avaliacao"><div class="estrelas">⭐</div><p>"Ótimo atendimento 🙏🙏"</p><span>- Wellinton Adona</span></div>
-    <div class="card-avaliacao"><div class="estrelas">⭐</div><p>"Ótima barbearia atendimento muito bom"</p><span>- Hiago Oliveira</span></div>
-    <div class="card-avaliacao"><div class="estrelas">⭐</div><p>"Recomendo MUITO!"</p><span>- Thauane Freitas</span></div>
-    <div class="card-avaliacao"><div class="estrelas">⭐</div><p>"Excelente profissional"</p><span>- Jéferson Abreu</span></div>
-    <div class="card-avaliacao"><div class="estrelas">⭐</div><p>"Maravilha"</p><span>- Christiane Junqueira</span></div>
-    <div class="card-avaliacao"><div class="estrelas">⭐</div><p>"Serviços: Cortes infantis"</p><span>- Bianca Batista</span></div>
-    <div class="card-avaliacao"><div class="estrelas">⭐</div><p>"Proprietário muito atencioso e educado, Lugar limpo, Organizado e aconchegante, Indico de olhos fechados a todos meus amigos!"</p><span>- Edmilson Bittencourt</span></div>
-    <div class="card-avaliacao"><div class="estrelas">⭐</div><p>"Melhor corte da lomba do pinheiro ambiente climatizado bom atendimento e ótima qualidade super recomendo"</p><span>- Thierre Rodrigues Da Conceição</span></div>
+    <div class="card-avaliacao"><div class="estrelas">⭐⭐⭐⭐⭐</div><p>"Ótimo atendimento 🙏🙏"</p><span>- Wellinton Adona</span></div>
+    <div class="card-avaliacao"><div class="estrelas">⭐⭐⭐⭐⭐</div><p>"Ótima barbearia atendimento muito bom"</p><span>- Hiago Oliveira</span></div>
+    <div class="card-avaliacao"><div class="estrelas">⭐⭐⭐⭐⭐</div><p>"Recomendo MUITO!"</p><span>- Thauane Freitas</span></div>
+    <div class="card-avaliacao"><div class="estrelas">⭐⭐⭐⭐⭐</div><p>"Excelente profissional"</p><span>- Jéferson Abreu</span></div>
+    <div class="card-avaliacao"><div class="estrelas">⭐⭐⭐⭐⭐</div><p>"Maravilha"</p><span>- Christiane Junqueira</span></div>
+    <div class="card-avaliacao"><div class="estrelas">⭐⭐⭐⭐⭐</div><p>"Serviços: Cortes infantis"</p><span>- Bianca Batista</span></div>
+    <div class="card-avaliacao"><div class="estrelas">⭐⭐⭐⭐⭐</div><p>"Proprietário muito atencioso e educado, Lugar limpo, Organizado e aconchegante, Indico de olhos fechados a todos meus amigos!"</p><span>- Edmilson Bittencourt</span></div>
+    <div class="card-avaliacao"><div class="estrelas">⭐⭐⭐⭐⭐</div><p>"Melhor corte da lomba do pinheiro ambiente climatizado bom atendimento e ótima qualidade super recomendo"</p><span>- Thierre Rodrigues Da Conceição</span></div>
   </div>
 
   <a href="https://maps.app.goo.gl/i2s3XrPSPhoCFsY17" target="_blank" class="card-endereco">
@@ -112,20 +147,14 @@ body::before {
     <div class="endereco"><strong>Estrada João de Oliveira Remião, 5830</strong><span>Lomba do Pinheiro, Porto Alegre - RS</span><div class="ver-mapa">Ver no mapa →</div></div>
   </a>
 
-  <div class="versiculo">
-    "Consagre ao Senhor tudo o que você faz, e os seus planos serão bem sucedidos."
-    <span>- Provérbios 16:3</span>
-  </div>
+  <div class="versiculo">"Consagre ao Senhor tudo o que você faz, e os seus planos serão bem sucedidos."<span>- Provérbios 16:3</span></div>
   
   <div class="botoes-redes">
-    <a href="https://wa.me/5551984254783?text=Fala%20PH%2C%20Vim%20pelo%20site%20da%20barbearia%2C%20Estou%20chegando%20a%C3%AD%20pra%20deixar%20o%20cabelo%20na%20r%C3%A9gua%20m%C3%A1xima!" target="_blank" class="btn-whatsapp"><svg width="20" height="20" viewBox="0 0 32 32" fill="white"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.666.736 5.162 2.015 7.29L2 30l6.89-1.806A14.005 14.005 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.714c-2.274 0-4.474-.61-6.41-1.765l-.46-.275-4.086 1.07 1.093-3.975-.3-.484A11.432 11.432 0 0 1 4.286 16c0-6.45 5.264-11.714 11.714-11.714S27.714 9.55 27.714 16 22.45 27.714 16 27.714zm6.5-8.688c-.356-.178-2.1-1.036-2.425-1.154-.325-.118-.562-.178-.8.178-.237.356-.92 1.154-1.128 1.39-.208.237-.416.267-.772.089-.356-.178-1.5-.553-2.858-1.764-1.057-.942-1.77-2.107-1.978-2.463-.208-.356-.022-.55.156-.727.16-.16.356-.416.534-.623.178-.208.237-.356.356-.593.118-.237.06-.444-.03-.623-.09-.178-.8-1.926-1.095-2.64-.288-.692-.58-.597-.8-.608-.208-.01-.447-.01-.687-.01-.237 0-.623.089-.95.444-.325.356-1.243 1.215-1.243 2.965s1.273 3.44 1.45 3.68c.178.237 2.506 3.826 6.07 5.37.85.367 1.513.587 2.03.75.853.27 1.63.232 2.244.14.685-.102 2.1-.858 2.396-1.687.296-.828.296-1.538.207-1.687-.09-.148-.325-.237-.68-.415z"/></svg> WhatsApp</a>
-    <a href="https://www.instagram.com/barbearia_phdoscorte?igsh=OXhoam5heXNtZDZt" target="_blank" class="btn-instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg> Instagram</a>
+    <a href="https://wa.me/5551984254783?text=Fala%20PH%2C%20Vim%20pelo%20site%20da%20barbearia%2C%20Estou%20chegando%20a%C3%AD%20pra%20deixar%20o%20cabelo%20na%20r%C3%A9gua%20m%C3%A1xima!" target="_blank" class="btn-whatsapp">WhatsApp</a>
+    <a href="https://www.instagram.com/barbearia_phdoscorte?igsh=OXhoam5heXNtZDZt" target="_blank" class="btn-instagram">Instagram</a>
   </div>
 
-  <!-- RODAPÉ ATUALIZADO -->
-  <div class="rodape-dev">
-    Desenvolvido por <a href="https://wa.me/5551985108885?text=Fala%20Bittencourt%2C%20Curti%20tua%20Landing%20Page%2C%20Bora%20fazer%20um%20or%C3%A7amento%3F!" target="_blank">Edmilson Bittencourt</a>
-  </div>
+  <div class="rodape-dev">Desenvolvido por <a href="https://wa.me/5551985108885?text=Fala%20Bittencourt%2C%20Curti%20tua%20Landing%20Page%2C%20Bora%20fazer%20um%20or%C3%A7amento%3F!" target="_blank">Edmilson Bittencourt</a></div>
 </div>
 
 <div id="galeria" class="page">
@@ -140,67 +169,74 @@ body::before {
   <div class="galeria-grid" id="galeria-kids-grid"><p style="text-align:center; grid-column:1/-1;">Carregando fotos...</p></div>
 </div>
 
+<div id="modal-foto" onclick="fecharModal()">
+  <button class="fechar-modal" onclick="fecharModal()">×</button>
+  <img id="modal-img" src="">
+</div>
+
 <script>
-function toggleMenu() {
-  document.getElementById('sidebar').classList.toggle('active');
-}
+function toggleMenu() { document.getElementById('sidebar').classList.toggle('active'); }
 function showPage(pageId) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById(pageId).classList.add('active');
   document.getElementById('sidebar').classList.remove('active');
   window.scrollTo(0, 0);
 }
-
 const carrossel = document.getElementById('carrossel');
 let scrollAmount = 0;
 let autoScroll = setInterval(() => {
-  const cardHeight = carrossel.querySelector('.card-avaliacao').offsetHeight + 10;
+  const card = carrossel.querySelector('.card-avaliacao');
+  if(!card) return;
+  const cardHeight = card.offsetHeight + 10;
   scrollAmount += cardHeight;
   if(scrollAmount >= carrossel.scrollHeight - carrossel.clientHeight) { scrollAmount = 0; }
   carrossel.scrollTo({ top: scrollAmount, behavior: 'smooth' });
 }, 4000);
 carrossel.addEventListener('touchstart', () => clearInterval(autoScroll));
 
+function abrirModal(src){
+  document.getElementById('modal-img').src = src.replace('w800','w1000');
+  document.getElementById('modal-foto').classList.add('active');
+}
+function fecharModal(){
+  document.getElementById('modal-foto').classList.remove('active');
+}
+
 const PLANILHA_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRyP8kp_HZpk1HhHknbRbHAiZbeE5tcuAijmB-v_nbnH3d_Ah7Gdq2hr26zY0hiec43Yhco1F_O9fZ_/pub?output=csv";
-
-function getDriveImageUrl(id) {
-  return `https://drive.google.com/thumbnail?id=${id}&sz=w1000`;
-}
+function getDriveImageUrl(id) { return `https://drive.google.com/thumbnail?id=${id}&sz=w800`; }
 function extractDriveId(url) {
-  const match = url.match(/\/d\/(.*?)\//);
-  return match ? match[1] : url.split('id=')[1];
+  try{
+    const match = url.match(/\/d\/(.*?)\//);
+    if(match) return match[1];
+    const u = new URL(url);
+    return u.searchParams.get('id');
+  }catch{ return url; }
 }
-
 async function carregarFotos() {
   try {
     const res = await fetch(PLANILHA_CSV);
     const data = await res.text();
     const linhas = data.split('\n').slice(1);
-    
     const galeriaCortes = document.getElementById('galeria-cortes');
     const galeriaKids = document.getElementById('galeria-kids-grid');
     galeriaCortes.innerHTML = '';
     galeriaKids.innerHTML = '';
-
     linhas.forEach(linha => {
-      if(!linha) return;
-      const [link, categoria] = linha.split(',');
-      if(!link || !categoria) return;
-      
-      const id = extractDriveId(link.trim());
+      if(!linha.trim()) return;
+      const partes = linha.split(',');
+      const link = partes[0]?.trim();
+      const categoria = partes[1]?.trim().toLowerCase() || '';
+      if(!link) return;
+      const id = extractDriveId(link);
+      if(!id) return;
       const imgUrl = getDriveImageUrl(id);
-      const img = `<img src="${imgUrl}" loading="lazy">`;
-      
-      if(categoria.trim().toLowerCase().includes('kids')) {
+      const img = `<img src="${imgUrl}" loading="lazy" onclick="abrirModal('${imgUrl}')">`;
+      if(categoria.includes('kids')) {
         galeriaKids.innerHTML += img;
       } else {
         galeriaCortes.innerHTML += img;
       }
     });
-
-    if(galeriaCortes.innerHTML === '') galeriaCortes.innerHTML = '<p style="text-align:center; grid-column:1/-1; color:#ccc;">Adicione fotos na planilha</p>';
-    if(galeriaKids.innerHTML === '') galeriaKids.innerHTML = '<p style="text-align:center; grid-column:1/-1; color:#ccc;">Adicione fotos na planilha</p>';
-
   } catch(e) { console.log("Erro:", e); }
 }
 carregarFotos();
