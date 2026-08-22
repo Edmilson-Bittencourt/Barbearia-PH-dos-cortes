@@ -7,9 +7,8 @@
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; background: #0f0f0f; color: #fff; overflow-x: hidden; }
-.header { position: fixed; top: 0; left: 0; right: 0; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; z-index: 20; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); }
+.header { position: fixed; top: 0; left: 0; right: 0; padding: 15px 20px; display: flex; justify-content: flex-start; align-items: center; z-index: 20; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); }
 .menu-btn { font-size: 28px; background: none; border: none; color: #fff; cursor: pointer; }
-.logo { font-size: 22px; font-weight: 800; color: #d4a017; letter-spacing: 2px; flex: 1; text-align: center; }
 .sidebar { position: fixed; top: 0; left: -300px; width: 280px; height: 100%; background: #161b22; transition: 0.3s; padding-top: 80px; z-index: 30; }
 .sidebar.active { left: 0; }
 .sidebar a { display: block; padding: 15px 25px; color: #fff; text-decoration: none; font-size: 18px; border-bottom: 1px solid #30363d; }
@@ -20,31 +19,34 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
 .hero-foto { width: 100%; background: #000; display: flex; justify-content: center; align-items: center; padding-top: 55px; }
 .hero-foto img { width: 100%; height: auto; max-height: 68vh; object-fit: contain; object-position: center top; display: block; }
 
-#home.main { background: #0f0f0f; display: flex; flex-direction: column; align-items: center; padding: 25px 20px 20px; gap: 20px; min-height: auto; }
+#home.main { background: #0f0f0f; display: flex; flex-direction: column; align-items: center; padding: 25px 20px 20px; gap: 22px; min-height: auto; }
 .titulo-avaliacoes { color: #d4a017; font-size: 16px; font-weight: 800; letter-spacing: 1px; }
-.carrossel-container { width: 100%; max-width: 380px; height: 100px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; scroll-snap-type: y mandatory; scrollbar-width: none; }
+
+/* AVALIAÇÕES - CORRIGIDO PRA NÃO FICAR APERTADO */
+.carrossel-container { width: 100%; max-width: 420px; height: 165px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; scroll-snap-type: y mandatory; scrollbar-width: none; padding: 2px 2px 10px 2px; }
 .carrossel-container::-webkit-scrollbar { display: none; }
-.card-avaliacao { background: #1c1c1c; border: 2px solid #d4a017; border-radius: 12px; padding: 10px 12px; scroll-snap-align: start; }
-.card-avaliacao .estrelas { color: #ffd700; font-size: 12px; }
-.card-avaliacao p { font-size: 12px; color: #fff; }
-.card-avaliacao span { color: #d4a017; font-size: 10px; font-weight: bold; }
-.card-endereco { background: #fff; border-radius: 12px; padding: 12px; width: 100%; max-width: 380px; text-decoration: none; display: block; }
+.card-avaliacao { background: #1c1c1c; border: 2px solid #d4a017; border-radius: 12px; padding: 14px 14px; scroll-snap-align: start; }
+.card-avaliacao .estrelas { color: #ffd700; font-size: 12px; margin-bottom: 4px; }
+.card-avaliacao p { font-size: 13px; color: #fff; line-height: 1.35; }
+.card-avaliacao span { color: #d4a017; font-size: 11px; font-weight: bold; display: block; margin-top: 5px; }
+
+.card-endereco { background: #fff; border-radius: 12px; padding: 12px; width: 100%; max-width: 420px; text-decoration: none; display: block; }
 .card-endereco .titulo { display: flex; gap: 6px; color: #000; font-weight: 700; font-size: 13px; margin-bottom: 8px; }
 .card-endereco .titulo svg { width: 15px; height: 15px; fill: #d4a017; }
 .card-endereco .endereco { background: #f5f5f5; padding: 8px; border-radius: 6px; }
 .card-endereco .endereco strong { color: #000; font-size: 12px; display: block; }
 .card-endereco .endereco span { color: #666; font-size: 11px; }
 .card-endereco .ver-mapa { color: #d4a017; font-size: 11px; font-weight: 600; margin-top: 6px; display: inline-block; }
-.versiculo { width: 100%; max-width: 380px; text-align: center; color: #d4a017; font-size: 14px; font-style: italic; font-weight: 600; line-height: 1.4; background: rgba(212,160,23,0.1); padding: 14px; border-radius: 10px; border: 1px solid rgba(212,160,23,0.3); }
+.versiculo { width: 100%; max-width: 420px; text-align: center; color: #d4a017; font-size: 14px; font-style: italic; font-weight: 600; line-height: 1.4; background: rgba(212,160,23,0.1); padding: 14px; border-radius: 10px; border: 1px solid rgba(212,160,23,0.3); }
 .versiculo span { display: block; font-size: 11px; color: #fff; margin-top: 6px; font-weight: 400; }
-.botoes-redes { display: flex; gap: 12px; width: 100%; max-width: 380px; }
+.botoes-redes { display: flex; gap: 12px; width: 100%; max-width: 420px; }
 .btn-whatsapp, .btn-instagram { flex: 1; justify-content: center; color: white; padding: 15px 18px; border-radius: 12px; text-decoration: none; font-weight: bold; font-size: 14px; display: flex; align-items: center; gap: 8px; }
 .btn-whatsapp { background: #25D366; }
 .btn-instagram { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); }
 .rodape-dev { text-align: center; font-size: 11px; color: #888; font-style: italic; margin-top: 10px; }
 .rodape-dev a { color: #25D366; font-weight: 600; text-decoration: none; }
 
-/* PAGINAS DE GALERIA - TELA TODA */
+/* PAGINAS DE GALERIA */
 .page { display: none; padding: 85px 20px 40px; max-width: 1200px; margin: 0 auto; min-height: 100vh; background: #0f0f0f; }
 .page.active { display: block; }
 .page h2 { color: #d4a017; text-align: center; font-size: 26px; margin-bottom: 25px; }
@@ -58,16 +60,18 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
 #modal-foto img { max-width: 95vw; max-height: 85vh; border-radius: 12px; border: 3px solid #d4a017; }
 #modal-foto .fechar-modal { position: absolute; top: 20px; right: 25px; font-size: 40px; color: #fff; background: none; border: none; cursor: pointer; }
 
-/* PC - CENTRALIZADO MAS GRANDE */
+/* PC - 23.8" - MAIS LARGO E AJEITADO */
 @media (min-width: 900px) {
   .hero-foto img { max-height: 72vh; }
-  #home.main { padding: 35px 20px 30px; gap: 24px; }
+  #home.main { padding: 35px 20px 30px; gap: 26px; }
   .titulo-avaliacoes { font-size: 20px; }
-  .carrossel-container { max-width: 480px; height: 130px; }
-  .card-avaliacao p { font-size: 14px; }
-  .card-endereco { max-width: 480px; }
-  .versiculo { max-width: 480px; font-size: 16px; }
-  .botoes-redes { max-width: 480px; }
+  .carrossel-container { max-width: 640px; height: 210px; gap: 14px; }
+  .card-avaliacao { padding: 16px 18px; }
+  .card-avaliacao p { font-size: 15px; }
+  .card-avaliacao span { font-size: 12px; }
+  .card-endereco { max-width: 640px; }
+  .versiculo { max-width: 640px; font-size: 16px; }
+  .botoes-redes { max-width: 640px; }
   .btn-whatsapp, .btn-instagram { font-size: 16px; padding: 18px; }
   .galeria-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .galeria-grid img { aspect-ratio: 1 / 1; }
@@ -79,7 +83,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; backgr
 </head>
 <body>
 <div class="sidebar" id="sidebar"><button class="close-btn" onclick="toggleMenu()">×</button><a href="#" onclick="showPage('home')">Início</a><a href="#" onclick="showPage('galeria')">Galeria</a><a href="#" onclick="showPage('galeria-kids')">Galeria Kids</a></div>
-<div class="header"><button class="menu-btn" onclick="toggleMenu()">☰</button><div class="logo">PH DOS CORTES</div><div style="width:28px"></div></div>
+<div class="header"><button class="menu-btn" onclick="toggleMenu()">☰</button></div>
 
 <div class="hero-foto" id="hero"><img src="IMG_5014.png" alt="PH dos Cortes"></div>
 
@@ -115,7 +119,7 @@ function showPage(id){
   if(id==='home'){ hero.style.display='flex'; } else { hero.style.display='none'; }
   window.scrollTo(0,0);
 }
-const carrossel=document.getElementById('carrossel');let s=0;let auto=setInterval(()=>{const c=carrossel.querySelector('.card-avaliacao');if(!c)return;const h=c.offsetHeight+10;s+=h;if(s>=carrossel.scrollHeight-carrossel.clientHeight)s=0;carrossel.scrollTo({top:s,behavior:'smooth'});},4000);carrossel.addEventListener('touchstart',()=>clearInterval(auto));
+const carrossel=document.getElementById('carrossel');let s=0;let auto=setInterval(()=>{const c=carrossel.querySelector('.card-avaliacao');if(!c)return;const h=c.offsetHeight+12;s+=h;if(s>=carrossel.scrollHeight-carrossel.clientHeight)s=0;carrossel.scrollTo({top:s,behavior:'smooth'});},4000);carrossel.addEventListener('touchstart',()=>clearInterval(auto));
 function abrirModal(src){document.getElementById('modal-img').src=src.replace('w800','w1000');document.getElementById('modal-foto').classList.add('active');}
 function fecharModal(){document.getElementById('modal-foto').classList.remove('active');}
 const CSV="https://docs.google.com/spreadsheets/d/e/2PACX-1vRyP8kp_HZpk1HhHknbRbHAiZbeE5tcuAijmB-v_nbnH3d_Ah7Gdq2hr26zY0hiec43Yhco1F_O9fZ_/pub?output=csv";
